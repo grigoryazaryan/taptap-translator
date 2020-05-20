@@ -13,6 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="false" />
+
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +27,7 @@
         </activity>
         <activity
             android:name=".activity.TranslateActivity"
-            android:label="DeepL"
+            android:label="@string/context_menu_label"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.Translucent">
             <intent-filter>

@@ -12,8 +12,10 @@ import kotlinx.coroutines.launch
  * Created by Grigory Azaryan on 5/19/20.
  */
 
-
-fun AppCompatActivity.launchCoroutine(routine: suspend () -> Unit) {
+/**
+ * Create and launch Activity lifecycle aware coroutine
+ */
+fun AppCompatActivity.launchActivityCoroutine(routine: suspend () -> Unit) {
 
     val job = CoroutineScope(Dispatchers.IO).launch {
         routine.invoke()

@@ -1,7 +1,7 @@
 package com.inchka.taptap
 
 import android.app.Application
-import android.content.Context
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 
 /**
  * Created by Grigory Azaryan on 5/18/20.
@@ -13,18 +13,15 @@ class App : Application() {
         super.onCreate()
 
 
-        appContext = this
-//        appComponent = DaggerAppComponent.builder()
-////            .appModule(AppModule(appContext))
-//            .build()
+        appComponent = DaggerAppComponent.builder()
+            .appModule(AppModule(this))
+            .build()
+
+        // enable crash reports for release app only
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG)
     }
 
-    companion object App {
-        lateinit var appContext: Context
-        val appComponent: AppComponent by lazy {
-            DaggerAppComponent.builder()
-                .appModule(AppModule(appContext))
-                .build()
-        }
+    companion object {
+        lateinit var appComponent: AppComponent
     }
 }

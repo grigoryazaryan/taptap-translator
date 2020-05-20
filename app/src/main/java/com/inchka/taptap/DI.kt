@@ -1,9 +1,14 @@
 package com.inchka.taptap
 
 import android.content.Context
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.inchka.taptap.activity.MainActivity
 import com.inchka.taptap.activity.TranslateActivity
 import com.inchka.taptap.helpers.AppHelper
+import com.inchka.taptap.helpers.Constants
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -14,6 +19,7 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -70,4 +76,19 @@ class AppModule @Inject constructor(private val context: Context) {
             .build()
             .create(DeepL::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseRemoteConfig(): FirebaseRemoteConfig =
+        Firebase.remoteConfig.apply {
+            val configSettings = remoteConfigSettings {
+                minimumFetchIntervalInSeconds = if(BuildConfig.DEBUG) 1 else TimeUnit.HOURS.toSeconds(1)
+            }
+
+            setConfigSettingsAsync(configSettings)
+
+            setDefaultsAsync(Constants.remoteConfigDefaults)
+
+            fetchAndActivate()
+        }
 }

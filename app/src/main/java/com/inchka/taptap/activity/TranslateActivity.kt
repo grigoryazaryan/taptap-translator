@@ -4,9 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.inchka.taptap.App
 import com.inchka.taptap.DeepL
-import com.inchka.taptap.Lang
+import com.inchka.taptap.model.Lang
 import com.inchka.taptap.R
 import com.inchka.taptap.helpers.AppHelper
 import kotlinx.android.synthetic.main.activity_translate.*
@@ -22,6 +23,9 @@ class TranslateActivity : AppCompatActivity() {
 
     @Inject
     lateinit var appHelper: AppHelper
+
+    @Inject
+    lateinit var remoteConfig: FirebaseRemoteConfig
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +43,7 @@ class TranslateActivity : AppCompatActivity() {
     }
 
     private fun translate(sourceLang: Lang? = null, targetLang: Lang, text: String) {
-        launchCoroutine {
+        launchActivityCoroutine {
             try {
                 val resp = deepL.translate(text = text, target_lang = targetLang)
                 Log.v(TAG, "${resp.toString()}")

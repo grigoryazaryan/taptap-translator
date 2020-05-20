@@ -1,4 +1,4 @@
-package com.inchka.taptap
+package com.inchka.taptap.model
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,6 +1,9 @@
 package com.inchka.taptap
 
 import com.inchka.taptap.helpers.Constants
+import com.inchka.taptap.model.Lang
+import com.inchka.taptap.model.ResponseTranslate
+import com.inchka.taptap.model.ResponseUsage
 import retrofit2.http.POST
 import retrofit2.http.Query
 

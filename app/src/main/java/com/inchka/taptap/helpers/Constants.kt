@@ -11,5 +11,10 @@ class Constants {
 
         val SOURCE_LANG = "source_lang"
         val TARGET_LANG = "target_lang"
+
+
+        val ADS_TYPE = "ads_type"
+
+        val remoteConfigDefaults = mapOf<String, Any>(ADS_TYPE to 1)
     }
 }
