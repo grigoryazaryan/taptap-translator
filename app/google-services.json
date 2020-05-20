@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "503826767161",
+    "firebase_url": "https://taptap-b1b91.firebaseio.com",
+    "project_id": "taptap-b1b91",
+    "storage_bucket": "taptap-b1b91.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503826767161:android:39fcb0ca17f1d75b275ce8",
+        "android_client_info": {
+          "package_name": "com.inchka.taptap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "503826767161-tqcv9sjdt4d8ohfp1h5s63374rac3skp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiPqD4LU2Jc9rBAbDW8T5TcIY7ln8e8k0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "503826767161-tqcv9sjdt4d8ohfp1h5s63374rac3skp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
