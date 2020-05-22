@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.inchka.taptap.App
-import com.inchka.taptap.DeepL
+import com.inchka.taptap.deepl.DeepL
 import com.inchka.taptap.R
 import com.inchka.taptap.helpers.Constants
 import javax.inject.Inject

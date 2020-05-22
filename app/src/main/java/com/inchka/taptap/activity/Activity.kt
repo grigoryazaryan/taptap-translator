@@ -1,12 +1,13 @@
 package com.inchka.taptap.activity
 
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.inchka.taptap.model.Lang
+import com.inchka.taptap.model.label
 
 /**
  * Created by Grigory Azaryan on 5/19/20.
@@ -15,16 +16,24 @@ import kotlinx.coroutines.launch
 /**
  * Create and launch Activity lifecycle aware coroutine
  */
-fun AppCompatActivity.launchActivityCoroutine(routine: suspend () -> Unit) {
+fun AppCompatActivity.showLangPickerDialog(defaultLang: Lang?=null, langSelectedListener: (langSelected: Lang) -> Unit) {
+    val langs: Array<Lang> = Lang.values()
+    val items = langs.map { "${it} (${it.label()})" }.toTypedArray()
 
-    val job = CoroutineScope(Dispatchers.IO).launch {
-        routine.invoke()
-    }
+    val dialog = MaterialAlertDialogBuilder(this)
+        .setSingleChoiceItems(items, langs.indexOf(defaultLang)) { d, which ->
+
+            langSelectedListener(langs[which])
+            d.dismiss()
+        }
+        .show()
+
     lifecycle.addObserver(object : LifecycleObserver {
 
         @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-        fun destroy() {
-            job.cancel()
+        fun onDestroy() {
+            dialog.dismiss()
+            lifecycle.removeObserver(this)
         }
     })
 }

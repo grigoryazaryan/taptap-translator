@@ -1,9 +1,7 @@
-package com.inchka.taptap
+package com.inchka.taptap.deepl
 
 import com.inchka.taptap.helpers.Constants
 import com.inchka.taptap.model.Lang
-import com.inchka.taptap.model.ResponseTranslate
-import com.inchka.taptap.model.ResponseUsage
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -20,7 +18,7 @@ interface DeepL {
     suspend fun translate(
         @Query("auth_key") auth_key: String = Constants.DEEPL_TOK, @Query("text") text: String, @Query("source_lang") source_lang: String = "",
         @Query("target_lang") target_lang: Lang, @Query("preserve_formatting") preserve_formatting: Int = 0,
-        @Query("split_sentences") split_sentences: String = "1"//"nonewlines"
+        @Query("split_sentences") split_sentences: String = "1"
     ): ResponseTranslate
 
 }

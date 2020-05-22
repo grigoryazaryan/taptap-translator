@@ -2,6 +2,7 @@
 <resources>
     <dimen name="margin_small">10dp</dimen>
     <dimen name="margin_medium">20dp</dimen>
+    <dimen name="margin_large">30dp</dimen>
 
     <dimen name="translate_window_height">400dp</dimen>
 </resources>

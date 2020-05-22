@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">TapTap</string>
-    <string name="context_menu_label">taptap</string>
+    <string name="context_menu_label">T̙̠r̞̗̦̟̲a͖̪n͍͍̭̻̪̱̣s̠l̫a̭̘̙͈͖t͇e̼͖̰̫͉</string>
 
+    <string name="auto_detected">Auto detected</string>
     <string name="type_text_here">Type text here..</string>
     <string name="translated_text">translated text</string>
     <string name="translate_from">Translate from:</string>
     <string name="translate_to">Translate to:</string>
+    <string name="translate">Translate</string>
+
+    <string name="copy_to_clipboard">Copy to Clipboard</string>
+    <string name="copied_to_clipboard">Copied to Clipboard</string>
 </resources>

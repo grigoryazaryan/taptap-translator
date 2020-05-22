@@ -5,12 +5,12 @@ package com.inchka.taptap.helpers
  */
 
 class Constants {
-    companion object{
+    companion object {
 
         val DEEPL_TOK = "1bbf370c-7d8d-229e-ee91-31a1c58cc9df"
 
-        val SOURCE_LANG = "source_lang"
-        val TARGET_LANG = "target_lang"
+        val FIRST_LANG = "first_lang"
+        val SECOND_LANG = "second_lang"
 
 
         val ADS_TYPE = "ads_type"

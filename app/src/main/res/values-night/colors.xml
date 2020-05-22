@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/amethyst</color>
+    <color name="colorPrimaryVariant">@color/wisteria</color>
+    <color name="colorPrimaryDark">@color/wisteria</color>
+    <color name="colorOnPrimary">@color/clouds</color>
+    <color name="colorSecondary">@color/silver</color>
+    <color name="colorSecondaryVariant">@color/asbestos</color>
+    <color name="colorOnSecondary">@color/concrete</color>
+    <color name="colorSurface">@color/midnightBlue</color>
+    <color name="colorOnSurface">@color/clouds</color>
+
+    <color name="textColorPrimary">@color/clouds</color>
+    <color name="colorControlNormal">@color/silver</color>
+</resources>
