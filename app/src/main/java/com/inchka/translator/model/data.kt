@@ -1,4 +1,4 @@
-package com.inchka.taptap.model
+package com.inchka.translator.model
 
 /**
  * Created by Grigory Azaryan on 5/21/20.
@@ -22,3 +22,6 @@ fun Lang.label() = when (this) {
     Lang.JA -> "Japanese"
     Lang.ZH -> "Chinese"
 }
+
+
+data class TranslateResult(val detectedLang: Lang, val translatedText: String)

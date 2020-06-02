@@ -1,4 +1,4 @@
-package com.inchka.taptap.activity
+package com.inchka.translator.activity
 
 import android.content.Intent
 import androidx.test.core.app.ActivityScenario
@@ -8,8 +8,8 @@ import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.inchka.taptap.R
-import com.inchka.taptap.deepl.Lang
+import com.inchka.translator.R
+import com.inchka.translator.model.Lang
 import org.junit.Test
 import org.junit.runner.RunWith
 

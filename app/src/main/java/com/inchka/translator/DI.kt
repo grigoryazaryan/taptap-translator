@@ -1,22 +1,23 @@
-package com.inchka.taptap
+package com.inchka.translator
 
 import android.content.Context
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
-import com.inchka.taptap.activity.MainActivity
-import com.inchka.taptap.activity.TranslateActivity
-import com.inchka.taptap.deepl.DeepL
-import com.inchka.taptap.deepl.ResponseTranslate
-import com.inchka.taptap.deepl.ResponseUsage
-import com.inchka.taptap.deepl.Translation
-import com.inchka.taptap.helpers.AppHelper
-import com.inchka.taptap.helpers.Constants
-import com.inchka.taptap.model.Lang
+import com.inchka.translator.activity.MainActivity
+import com.inchka.translator.activity.TranslateActivity
+import com.inchka.translator.deepl.DeepL
+import com.inchka.translator.deepl.ResponseTranslate
+import com.inchka.translator.deepl.ResponseUsage
+import com.inchka.translator.deepl.Translation
+import com.inchka.translator.helpers.AppHelper
+import com.inchka.translator.helpers.Constants
+import com.inchka.translator.model.Lang
 import dagger.Component
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.delay
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -24,12 +25,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.random.Random
 
 /**
  * Created by Grigory Azaryan on 5/18/20.
  */
 @Singleton
-@Component(modules = [AppModule::class, FakeDeepLModule::class])
+@Component(modules = [AppModule::class, DeepLModule::class])
 interface AppComponent {
 
     fun inject(obj: MainActivity)
@@ -116,8 +118,14 @@ class FakeDeepLModule {
             target_lang: Lang,
             preserve_formatting: Int,
             split_sentences: String
-        ): ResponseTranslate =
-//            ResponseTranslate(listOf(Translation(Lang.RU, "translated text from ru to EN FakeDeepLModule")))
-            ResponseTranslate(listOf(Translation(Lang.EN, "¡Hola, mundo!")))
+        ): ResponseTranslate {
+            delay(1000)
+            val list = listOf(
+                ResponseTranslate(listOf(Translation(Lang.ES, "translated text from es to EN FakeDeepLModule\ntranslated text from es to EN FakeDeepLModule\ntranslated text from es to EN FakeDeepLModule\ntranslated text from es to EN FakeDeepLModule\n"))),
+                ResponseTranslate(listOf(Translation(Lang.RU, "translated text from ru to EN FakeDeepLModule"))),
+                ResponseTranslate(listOf(Translation(Lang.EN, "¡Hola, mundo!")))
+            )
+            return list[Random.nextInt(list.size)]
+        }
     }
 }

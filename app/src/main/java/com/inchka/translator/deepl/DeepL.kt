@@ -1,7 +1,7 @@
-package com.inchka.taptap.deepl
+package com.inchka.translator.deepl
 
-import com.inchka.taptap.helpers.Constants
-import com.inchka.taptap.model.Lang
+import com.inchka.translator.helpers.Constants
+import com.inchka.translator.model.Lang
 import retrofit2.http.POST
 import retrofit2.http.Query
 

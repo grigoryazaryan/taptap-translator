@@ -4,5 +4,6 @@
     <dimen name="margin_medium">20dp</dimen>
     <dimen name="margin_large">30dp</dimen>
 
-    <dimen name="translate_window_height">400dp</dimen>
+    <dimen name="translate_window_height">350dp</dimen>
+    <dimen name="translate_window_height_landscape">300dp</dimen>
 </resources>

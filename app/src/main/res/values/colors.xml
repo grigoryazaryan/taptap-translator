@@ -13,6 +13,8 @@
     <color name="textColorPrimary">@color/blueGrey</color>
     <color name="colorControlNormal">@color/midnightBlue</color>
 
+    <color name="translateDialogBackground">#EBECF0F1</color>
+
     <color name="midnightBlue">#2c3e50</color>
     <color name="wisteria">#8e44ad</color>
     <color name="amethyst">#9b59b6</color>

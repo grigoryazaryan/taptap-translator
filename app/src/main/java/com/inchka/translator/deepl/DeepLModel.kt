@@ -1,6 +1,6 @@
-package com.inchka.taptap.deepl
+package com.inchka.translator.deepl
 
-import com.inchka.taptap.model.Lang
+import com.inchka.translator.model.Lang
 
 /**
  * Created by Grigory Azaryan on 5/18/20.

@@ -12,4 +12,6 @@
 
     <color name="textColorPrimary">@color/clouds</color>
     <color name="colorControlNormal">@color/silver</color>
+
+    <color name="translateDialogBackground">#EB2C3E50</color>
 </resources>

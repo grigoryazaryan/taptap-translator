@@ -1,4 +1,4 @@
-package com.inchka.taptap.helpers
+package com.inchka.translator.helpers
 
 /**
  * Created by Grigory Azaryan on 5/18/20.

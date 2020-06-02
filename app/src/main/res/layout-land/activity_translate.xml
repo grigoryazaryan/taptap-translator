@@ -24,24 +24,14 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/translate_window_height"
+                android:minHeight="@dimen/translate_window_height_landscape"
                 android:padding="@dimen/margin_medium">
-
-                <com.hanks.htextview.fade.FadeTextView
-                    android:id="@+id/original_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?attr/textAppearanceSubtitle1"
-                    app:animationDuration="1500"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="text here" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/controls"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
-                    app:layout_constraintTop_toBottomOf="@id/original_text">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/translate_from_lang"
@@ -85,13 +75,29 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <com.hanks.htextview.fade.FadeTextView
+                    android:id="@+id/original_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    app:animationDuration="1500"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/controls"
+                    tools:text="text here" />
+
                 <com.hanks.htextview.typer.TyperTextView
                     android:id="@+id/translated_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_small"
                     android:layout_marginTop="@dimen/margin_small"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     app:charIncrease="1"
+                    app:layout_constraintLeft_toRightOf="@id/guideline"
+                    app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/controls"
                     app:typerSpeed="10"
                     tools:text="translated text" />
@@ -107,6 +113,13 @@
                     android:tint="?android:attr/colorControlNormal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </com.google.android.material.card.MaterialCardView>

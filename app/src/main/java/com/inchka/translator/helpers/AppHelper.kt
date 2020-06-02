@@ -1,12 +1,12 @@
-package com.inchka.taptap.helpers
+package com.inchka.translator.helpers
 
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.SharedPreferences
 import android.widget.Toast
-import com.inchka.taptap.BuildConfig
-import com.inchka.taptap.model.Lang
+import com.inchka.translator.BuildConfig
+import com.inchka.translator.model.Lang
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -40,7 +40,7 @@ class AppHelper @Inject constructor(private val context: Context) {
         return if (first != null && second != null) {
             if (detectedSourceLang == first)
                 second else first
-        } else { // assume all languages are not known yet
+        } else { // assume no languages are known yet
             if (detectedSourceLang != Lang.EN)
                 Lang.EN else Lang.ES
         }

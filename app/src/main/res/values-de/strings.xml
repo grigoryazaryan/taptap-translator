@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auto_detect">Auto-Erkennung</string>
+    <string name="detected">entdeckt</string>
+    <string name="translate">Traducir</string>
+    <string name="copy_to_clipboard">Copiar al portapapeles</string>
+    <string name="copied_to_clipboard">Copiado al portapapeles</string>
+    <string name="type_or_paste_here">Escriba o pegue el texto aquí</string>
+</resources>

@@ -1,13 +1,12 @@
-package com.inchka.taptap.activity
+package com.inchka.translator.activity
 
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.inchka.taptap.model.Lang
-import com.inchka.taptap.model.label
+import com.inchka.translator.model.Lang
+import com.inchka.translator.model.label
 
 /**
  * Created by Grigory Azaryan on 5/19/20.

@@ -21,6 +21,9 @@
 
         <item name="fontFamily">@font/roboto</item>
 
+        <item name="translateDialogBackground">@color/translateDialogBackground</item>
+
+
     </style>
 
     <style name="AppTheme.Translucent" parent="AppTheme">

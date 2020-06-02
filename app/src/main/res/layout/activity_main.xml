@@ -1,14 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
-    <TextView
+    tools:context=".activity.TranslateActivity">
+
+    <ScrollView
         android:layout_width="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="main actviity"
-        android:layout_height="wrap_content"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:padding="@dimen/margin_medium">
+
+            <EditText
+                android:id="@+id/original_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:hint="@string/type_or_paste_here"
+                android:imeOptions="actionDone"
+                android:inputType="textMultiLine"
+                android:maxLines="8"
+                android:minLines="3"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/controls"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                app:layout_constraintTop_toBottomOf="@id/original_text">
+
+                <TextView
+                    android:id="@+id/translate_from_lang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/margin_medium"
+                    android:paddingVertical="@dimen/margin_small"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/button"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="RU" />
+
+                <ImageView
+                    android:id="@+id/switch_languages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/translate"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:paddingHorizontal="@dimen/margin_large"
+                    android:src="@drawable/ic_switch"
+                    android:tint="?android:attr/colorControlNormal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/translate_to_lang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/margin_large"
+                    android:paddingVertical="@dimen/margin_small"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/button"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="RU" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.hanks.htextview.typer.TyperTextView
+                android:id="@+id/translated_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textIsSelectable="true"
+                app:charIncrease="1"
+                app:layout_constraintTop_toBottomOf="@id/controls"
+                app:typerSpeed="10"
+                tools:text="translated text" />
+
+            <ImageView
+                android:id="@+id/copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/copy_to_clipboard"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="@dimen/margin_small"
+                android:src="@drawable/ic_copy"
+                android:tint="?android:attr/colorControlNormal"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/translated_text" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:text="@string/translate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/copy" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>
