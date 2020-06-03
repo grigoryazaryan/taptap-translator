@@ -57,10 +57,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         switch_languages.setOnClickListener {
-            val from = (translate_from_lang.tag as? Lang)
-            val to = (translate_to_lang.tag as? Lang)
+            val from = (translate_from_lang.getTag(R.integer.lang) as? Lang)
+            val to = (translate_to_lang.getTag(R.integer.lang) as? Lang)
 
             if (from != null && to != null) {
+                translate_from_lang.setTag(R.integer.auto_detected, false) // remove label
+
                 setLangSelector(translate_from_lang, to)
                 setLangSelector(translate_to_lang, from)
             }
@@ -71,18 +73,24 @@ class MainActivity : AppCompatActivity() {
 
             if (originalText.isBlank()) return@setOnClickListener
 
-            (translate_to_lang.tag as? Lang)?.let { toLang ->
+            val fromLangSetManually: Boolean = (translate_from_lang.getTag(R.integer.auto_detected) as? Boolean) ?: false
+
+            val fromLang: Lang? = if (fromLangSetManually)
+                translate_from_lang.getTag(R.integer.lang) as? Lang
+            else null
+
+            (translate_to_lang.getTag(R.integer.lang) as? Lang)?.let { toLang ->
                 lifecycle.coroutineScope.launch {
                     //disable while making request not to double it
                     button.isEnabled = false
 
-                    val (detectedLang, translatedText) = translationRepository.translate(toLang, originalText)
+                    val (detectedLang, translatedText) = translationRepository.translate(toLang, originalText, fromLang)
                     // enable
                     button.isEnabled = true
 
 //                    hideKeyboard()
 
-                    setData(true, detectedLang, toLang, translatedText)
+                    setData(!fromLangSetManually, detectedLang, toLang, translatedText)
 
                     appHelper.firstLang = toLang.toString()
                     appHelper.secondLang = detectedLang.toString()
@@ -91,14 +99,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         translate_from_lang.setOnClickListener {
-            val fromLang = translate_from_lang.tag as? Lang
+            val fromLang = translate_from_lang.getTag(R.integer.lang) as? Lang
             showLangPickerDialog(fromLang) { langSelected ->
                 setLangSelector(translate_from_lang, langSelected)
             }
         }
 
         translate_to_lang.setOnClickListener {
-            val lang = translate_to_lang.tag as? Lang
+            val lang = translate_to_lang.getTag(R.integer.lang) as? Lang
             showLangPickerDialog(lang) { langSelected ->
                 setLangSelector(translate_to_lang, langSelected)
             }
@@ -122,7 +130,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setData(sourceLangAutoDetected: Boolean, sourceLang: Lang, targetLang: Lang, translatedText: String) {
-        translate_from_lang.tag = sourceLang
+        translate_from_lang.setTag(R.integer.lang, sourceLang)
+        translate_from_lang.setTag(R.integer.auto_detected, sourceLangAutoDetected)
         translate_from_lang.text =
             if (sourceLangAutoDetected)
                 "${sourceLang} (${getString(R.string.detected)})"
@@ -135,14 +144,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setLangSelector(textView: TextView, lang: Lang) {
-        textView.tag = lang
-        textView.text = "${lang} (${lang.label()})"
+        val autoDetected: Boolean? = textView.getTag(R.integer.auto_detected) as? Boolean
+        val label = if (autoDetected == true) "(${getString(R.string.detected)})" else "(${lang.label()})"
+        textView.setTag(R.integer.lang, lang)
+        textView.text = "${lang} ${label}"
     }
 
     private fun initViews() {
         // set initial languages
-        val firstLang: Lang = appHelper.firstLang?.let { Lang.valueOf(it) } ?: Lang.EN
         translate_from_lang.text = getString(R.string.auto_detect)
+
+        val firstLang: Lang = appHelper.firstLang?.let { Lang.valueOf(it) } ?: Lang.EN
         setLangSelector(translate_to_lang, firstLang)
 
         copy.visibility = View.INVISIBLE
