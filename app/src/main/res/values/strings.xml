@@ -10,4 +10,6 @@
     <string name="copy_to_clipboard">Copy to Clipboard</string>
     <string name="copied_to_clipboard">Copied to Clipboard</string>
     <string name="type_or_paste_here">Type or paste text here</string>
+    <string name="switch_languages">Switch languages</string>
+    <string name="update_been_downloaded">An update has just been downloaded</string>
 </resources>

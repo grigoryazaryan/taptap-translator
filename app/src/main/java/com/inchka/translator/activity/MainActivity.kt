@@ -1,17 +1,21 @@
 package com.inchka.translator.activity
 
 import android.os.Bundle
+import android.text.InputType
 import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.coroutineScope
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.inchka.translator.App
 import com.inchka.translator.R
 import com.inchka.translator.helpers.AppHelper
 import com.inchka.translator.helpers.Constants
+import com.inchka.translator.helpers.InAppUpdateHelper
 import com.inchka.translator.helpers.hideKeyboard
 import com.inchka.translator.model.Lang
 import com.inchka.translator.model.label
@@ -32,6 +36,8 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var remoteConfig: FirebaseRemoteConfig
 
+    private var inAppUpdateHelper: InAppUpdateHelper = InAppUpdateHelper(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         App.appComponent.inject(this)
 
@@ -40,6 +46,10 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // make keyboard closable with OK button
+        original_text.imeOptions = EditorInfo.IME_ACTION_GO
+        original_text.setRawInputType(InputType.TYPE_CLASS_TEXT)
 
         copy.setOnClickListener {
             appHelper.copyToClipboard(translated_text.text.toString())
@@ -70,7 +80,7 @@ class MainActivity : AppCompatActivity() {
                     // enable
                     button.isEnabled = true
 
-                    hideKeyboard()
+//                    hideKeyboard()
 
                     setData(true, detectedLang, toLang, translatedText)
 
@@ -96,6 +106,19 @@ class MainActivity : AppCompatActivity() {
 
         initViews()
 
+        inAppUpdateHelper.addOnDownloadCompleteListener {
+            // After the update is downloaded, show a notification
+            // and request user confirmation to restart the app.
+            popupSnackbarForCompleteUpdate()
+        }
+
+    }
+
+    private fun popupSnackbarForCompleteUpdate() {
+        Snackbar.make(background, R.string.update_been_downloaded, Snackbar.LENGTH_INDEFINITE).apply {
+            setAction("RESTART") { inAppUpdateHelper.completeUpdate() }
+            show()
+        }
     }
 
     fun setData(sourceLangAutoDetected: Boolean, sourceLang: Lang, targetLang: Lang, translatedText: String) {
@@ -127,6 +150,15 @@ class MainActivity : AppCompatActivity() {
 
         button.visibility = View.INVISIBLE
         original_text.addTextChangedListener { text -> button.visibility = if (text.isNullOrBlank()) View.INVISIBLE else View.VISIBLE }
+
+        original_text.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_GO) {
+                button.callOnClick()
+                hideKeyboard()
+            }
+
+            return@setOnEditorActionListener false
+        }
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
