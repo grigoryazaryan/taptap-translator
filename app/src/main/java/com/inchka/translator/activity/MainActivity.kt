@@ -1,17 +1,22 @@
 package com.inchka.translator.activity
 
+import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.coroutineScope
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.inchka.translator.App
+import com.inchka.translator.BuildConfig
 import com.inchka.translator.R
 import com.inchka.translator.helpers.AppHelper
 import com.inchka.translator.helpers.Constants
@@ -120,6 +125,10 @@ class MainActivity : AppCompatActivity() {
             popupSnackbarForCompleteUpdate()
         }
 
+        // show intro
+        if (!appHelper.introPlayed)
+            showIntro()
+
     }
 
     private fun popupSnackbarForCompleteUpdate() {
@@ -176,5 +185,20 @@ class MainActivity : AppCompatActivity() {
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         hideKeyboard()
         return super.onTouchEvent(event)
+    }
+
+    private fun showIntro() {
+        val uri = Uri.parse("android.resource://${BuildConfig.APPLICATION_ID}/" + R.raw.intro)
+        val videoView = VideoView(this)
+        videoView.setVideoURI(uri)
+        videoView.setOnPreparedListener { mp: MediaPlayer? -> mp?.isLooping = true }
+        videoView.start()
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.did_you_know)
+            .setMessage(R.string.you_can_use_text_menu)
+            .setView(videoView)
+            .setPositiveButton("OK") { _, _ -> appHelper.introPlayed = true }
+            .show()
     }
 }

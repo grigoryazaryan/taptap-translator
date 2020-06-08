@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">TapTap</string>
     <string name="quirky_label" translatable="false">T̙̠r̞̗̦̟̲a͖̪n͍͍̭̻̪̱̣s̠l̫a̭̘̙͈͖t͇e̼͖̰̫͉</string>
-    <string name="context_menu_label" translatable="false">@string/quirky_label</string>
+    <string name="context_menu_label" translatable="false">@string/app_name</string>
 
     <string name="auto_detect">Auto detect</string>
     <string name="detected">detected</string>
@@ -12,4 +12,6 @@
     <string name="type_or_paste_here">Type or paste text here</string>
     <string name="switch_languages">Switch languages</string>
     <string name="update_been_downloaded">An update has just been downloaded</string>
+    <string name="did_you_know">Did you know..</string>
+    <string name="you_can_use_text_menu">You can use TapTap right from context menu</string>
 </resources>

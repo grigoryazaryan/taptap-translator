@@ -8,4 +8,6 @@
     <string name="type_or_paste_here">Escriba o pegue el texto aquí</string>
     <string name="switch_languages">Sprachen wechseln</string>
     <string name="update_been_downloaded">Ein Update wurde soeben heruntergeladen</string>
+    <string name="did_you_know">Wussten Sie..</string>
+    <string name="you_can_use_text_menu">Sie können TapTap direkt aus dem Kontextmenü verwenden</string>
 </resources>

@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.widget.Toast
 import com.inchka.translator.BuildConfig
-import com.inchka.translator.model.Lang
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -33,18 +32,9 @@ class AppHelper @Inject constructor(private val context: Context) {
         set(value) = getSharedPreferences().edit().putString(Constants.SECOND_LANG, value).apply()
 
 
-    fun mostProbableSecondLanguage(detectedSourceLang: Lang): Lang {
-        val first = firstLang?.let { Lang.valueOf(it) }
-        val second = secondLang?.let { Lang.valueOf(it) }
-
-        return if (first != null && second != null) {
-            if (detectedSourceLang == first)
-                second else first
-        } else { // assume no languages are known yet
-            if (detectedSourceLang != Lang.EN)
-                Lang.EN else Lang.ES
-        }
-    }
+    var introPlayed: Boolean
+        get() = getSharedPreferences().getBoolean(Constants.INTRO_SEEN, false)
+        set(value) = getSharedPreferences().edit().putBoolean(Constants.INTRO_SEEN, value).apply()
 
     fun copyToClipboard(text: String, label: String? = null) {
         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager

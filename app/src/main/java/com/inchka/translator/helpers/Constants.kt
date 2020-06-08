@@ -14,6 +14,7 @@ class Constants {
 
         val LANG = "lang"
         val AUTODETECTED = "autodetected"
+        val INTRO_SEEN = "intro_seen"
 
 
         val ADS_TYPE = "ads_type"
