@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auto_detect">Автоопределение</string>
+    <string name="detected">определен</string>
+    <string name="translate">Перевести</string>
+
+    <string name="copy_to_clipboard">Скопировать в буфер обмена</string>
+    <string name="copied_to_clipboard">Скопировано в буфер обмена</string>
+    <string name="type_or_paste_here">Введите или вставьте текст здесь</string>
+    <string name="switch_languages">Поменять языки</string>
+    <string name="update_been_downloaded">Обновление только что было загружено</string>
+    <string name="did_you_know">Знали ли вы что..</string>
+    <string name="you_can_use_text_menu">Вы можете использовать TapTap прямо из контекстного меню</string>
+</resources>

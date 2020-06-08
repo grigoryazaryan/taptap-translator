@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auto_detect">Auto détection</string>
+    <string name="detected">détecté</string>
+    <string name="translate">Traduire</string>
+
+    <string name="copy_to_clipboard">Copie dans le presse-papiers</string>
+    <string name="copied_to_clipboard">Copié dans le presse-papiers</string>
+    <string name="type_or_paste_here">Tapez ou collez le texte ici</string>
+    <string name="switch_languages">Changer de langue</string>
+    <string name="update_been_downloaded">Une mise à jour vient d\'être téléchargée</string>
+    <string name="did_you_know">Saviez-vous que..</string>
+    <string name="you_can_use_text_menu">Vous pouvez utiliser TapTap directement à partir du menu contextuel</string>
+</resources>
