@@ -111,4 +111,13 @@
         </ScrollView>
     </com.google.android.material.card.MaterialCardView>
 
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adViewBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-7706096412260802/6760172940"
+        ads:layout_constraintBottom_toBottomOf="parent" />
 </FrameLayout>

@@ -2,6 +2,7 @@
     <string name="app_name" translatable="false">TapTap</string>
     <string name="quirky_label" translatable="false">T̙̠r̞̗̦̟̲a͖̪n͍͍̭̻̪̱̣s̠l̫a̭̘̙͈͖t͇e̼͖̰̫͉</string>
     <string name="context_menu_label" translatable="false">@string/app_name</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-7706096412260802~8903120555</string>
 
     <string name="auto_detect">Auto detect</string>
     <string name="detected">detected</string>

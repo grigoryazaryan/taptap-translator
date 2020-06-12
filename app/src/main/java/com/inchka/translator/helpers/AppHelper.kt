@@ -5,6 +5,8 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.SharedPreferences
 import android.widget.Toast
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.inchka.translator.BuildConfig
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,11 +27,17 @@ class AppHelper @Inject constructor(private val context: Context) {
 
     var firstLang: String?
         get() = getSharedPreferences().getString(Constants.FIRST_LANG, null)
-        set(value) = getSharedPreferences().edit().putString(Constants.FIRST_LANG, value).apply()
+        set(value) {
+            Firebase.analytics.setUserProperty(Constants.FIRST_LANG, value)
+            getSharedPreferences().edit().putString(Constants.FIRST_LANG, value).apply()
+        }
 
     var secondLang: String?
         get() = getSharedPreferences().getString(Constants.SECOND_LANG, null)
-        set(value) = getSharedPreferences().edit().putString(Constants.SECOND_LANG, value).apply()
+        set(value) {
+            Firebase.analytics.setUserProperty(Constants.SECOND_LANG, value)
+            getSharedPreferences().edit().putString(Constants.SECOND_LANG, value).apply()
+        }
 
 
     var introPlayed: Boolean

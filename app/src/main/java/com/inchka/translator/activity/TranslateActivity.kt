@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.coroutineScope
+import com.google.android.gms.ads.AdRequest
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.inchka.translator.App
 import com.inchka.translator.R
@@ -73,6 +74,12 @@ class TranslateActivity : AppCompatActivity() {
 
         handleIntent(intent)
 
+        loadAd()
+    }
+
+    private fun loadAd() {
+        val adRequest = AdRequest.Builder().build()
+        adViewBanner.loadAd(adRequest)
     }
 
     override fun onNewIntent(intent: Intent?) {

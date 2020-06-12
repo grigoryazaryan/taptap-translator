@@ -22,8 +22,8 @@ android {
         applicationId "com.inchka.taptap"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 14
-        versionName "1.14"
+        versionCode 15
+        versionName "1.15"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -34,8 +34,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.signingConfig
         }
+
         debug {
             signingConfig signingConfigs.signingConfig
+        }
+    }
+
+    flavorDimensions "tier"
+    productFlavors {
+        free {
+            dimension "tier"
+            applicationId 'com.inchka.taptap'
+        }
+
+        paid {
+            dimension "tier"
+            applicationId 'com.inchka.taptap.paid'
         }
     }
 
@@ -75,9 +89,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
 
     implementation 'com.google.android.play:core:1.7.3'
-    implementation 'com.google.firebase:firebase-analytics-ktx:17.4.2'
-    implementation 'com.google.firebase:firebase-crashlytics:17.0.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx:17.4.3'
+    implementation 'com.google.firebase:firebase-crashlytics:17.0.1'
     implementation 'com.google.firebase:firebase-config-ktx:19.1.4'
+    implementation 'com.google.firebase:firebase-ads:19.1.0'
 
 
     implementation "com.google.dagger:dagger:$dagger_version"
