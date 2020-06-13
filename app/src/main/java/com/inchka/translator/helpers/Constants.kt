@@ -19,8 +19,8 @@ class Constants {
         val INTRO_SEEN = "intro_seen"
 
 
-        val ADS_TYPE = "ads_type"
+        val SHOW_ADS_IN_TRANSLATE_POPUP = "show_ads_translate_popup"
 
-        val remoteConfigDefaults = mapOf<String, Any>(ADS_TYPE to 1)
+        val remoteConfigDefaults = mapOf<String, Any>(SHOW_ADS_IN_TRANSLATE_POPUP to true)
     }
 }

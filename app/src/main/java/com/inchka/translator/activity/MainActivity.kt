@@ -46,9 +46,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         App.appComponent.inject(this)
 
-        // just to notice that Remote Config works
-        Timber.v("adstype ${remoteConfig.getLong(Constants.ADS_TYPE)}")
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

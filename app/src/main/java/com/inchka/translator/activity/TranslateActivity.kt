@@ -8,14 +8,14 @@ import com.google.android.gms.ads.AdRequest
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.inchka.translator.App
 import com.inchka.translator.R
-import com.inchka.translator.deepl.DeepL
 import com.inchka.translator.helpers.AppHelper
+import com.inchka.translator.helpers.Constants
 import com.inchka.translator.model.Lang
-import com.inchka.translator.model.TranslateResult
 import com.inchka.translator.model.label
 import com.inchka.translator.viewmodel.TranslationRepository
 import kotlinx.android.synthetic.main.activity_translate.*
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -26,6 +26,9 @@ class TranslateActivity : AppCompatActivity() {
 
     @Inject
     lateinit var appHelper: AppHelper
+
+    @Inject
+    lateinit var remoteConfig: FirebaseRemoteConfig
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,8 +81,13 @@ class TranslateActivity : AppCompatActivity() {
     }
 
     private fun loadAd() {
-        val adRequest = AdRequest.Builder().build()
-        adViewBanner.loadAd(adRequest)
+        // check out Remote Config
+        val shouldShowAds = remoteConfig.getBoolean(Constants.SHOW_ADS_IN_TRANSLATE_POPUP)
+        Timber.v("shouldShowAds ${shouldShowAds}")
+        if (shouldShowAds) {
+            val adRequest = AdRequest.Builder().build()
+            adViewBanner.loadAd(adRequest)
+        }
     }
 
     override fun onNewIntent(intent: Intent?) {
