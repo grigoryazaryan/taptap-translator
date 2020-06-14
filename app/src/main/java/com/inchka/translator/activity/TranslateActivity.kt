@@ -7,6 +7,7 @@ import androidx.lifecycle.coroutineScope
 import com.google.android.gms.ads.AdRequest
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.inchka.translator.App
+import com.inchka.translator.BuildConfig
 import com.inchka.translator.R
 import com.inchka.translator.helpers.AppHelper
 import com.inchka.translator.helpers.Constants
@@ -84,7 +85,10 @@ class TranslateActivity : AppCompatActivity() {
         // check out Remote Config
         val shouldShowAds = remoteConfig.getBoolean(Constants.SHOW_ADS_IN_TRANSLATE_POPUP)
         Timber.v("shouldShowAds ${shouldShowAds}")
-        if (shouldShowAds) {
+
+        val isPaidVersion = BuildConfig.APPLICATION_ID.endsWith(".paid") // todo remove in the near future
+
+        if (!isPaidVersion && shouldShowAds) {
             val adRequest = AdRequest.Builder().build()
             adViewBanner.loadAd(adRequest)
         }
